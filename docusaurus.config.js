@@ -5,7 +5,7 @@ const { themes: prismThemes } = require('prism-react-renderer');
 const config = {
   title: 'ConCRG',
   tagline: 'Making Software Sentient',
-  favicon: 'img/logo.svg',
+  favicon: 'img/logo.png',
 
   url: 'https://dasun-theekshana.github.io',
   baseUrl: '/concrg-docs/',
@@ -41,12 +41,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/logo.svg',
+      image: 'img/logo.png',
       navbar: {
         title: 'ConCRG',
         logo: {
           alt: 'ConCRG Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo.png',
         },
         items: [
           {
