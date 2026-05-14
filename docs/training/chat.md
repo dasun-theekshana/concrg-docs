@@ -53,15 +53,6 @@ From the training panel:
 2. Click **Start Training**
 3. Type in the chat input about your product
 
-Programmatically:
-
-```typescript
-messageBus.emit('chat:message', {
-  content: 'The settlement workflow has two approval stages for amounts over $1M',
-  sessionId: 'training-session-abc',
-});
-```
-
 ---
 
 ## Tips for Effective Chat Training

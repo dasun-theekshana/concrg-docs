@@ -6,189 +6,88 @@ sidebar_label: Architecture
 
 # Architecture
 
-ConCRG is composed of four layers: the in-browser connector, two backend services, and a persistent graph database.
+ConCRG embeds into your application as a lightweight connector and communicates with two backend services that handle knowledge extraction and AI querying.
 
 ---
 
 ## System Overview
 
 ```
-┌───────────────────────────────────────────────────────────────────────────┐
-│  Host Application (Any React SPA)                                         │
-│                                                                           │
-│  ┌─────────────┐  ┌────────────────────────────────────────────────────┐  │
-│  │  <App />    │  │  CRG Connector (TypeScript)                        │  │
-│  │  (Host UI)  │  │                                                    │  │
-│  └─────────────┘  │  ┌──────────┐  ┌──────────┐  ┌────────────────┐  │  │
-│                   │  │ Context  │  │  Event   │  │  In-Browser    │  │  │
-│  Wrapped by:      │  │ Detector │  │Intercept.│  │  Probe         │  │  │
-│  <CRGProvider>    │  └──────────┘  └──────────┘  └────────────────┘  │  │
-│                   │                                                    │  │
-│                   │  ┌──────────┐  ┌──────────┐                       │  │
-│                   │  │ Session  │  │ Message  │                       │  │
-│                   │  │ Manager  │  │   Bus    │                       │  │
-│                   │  └──────────┘  └──────────┘                       │  │
-│                   │                                                    │  │
-│                   │  ┌──────────────────────────────────────────────┐ │  │
-│                   │  │  Sidecar UI (Shadow DOM)                     │ │  │
-│                   │  │  Preact: Training Panel | Assist Toolbar     │ │  │
-│                   │  └──────────────────────────────────────────────┘ │  │
-│                   └────────────────────────────────────────────────────┘  │
-└───────────────────────────────────────────────────────────────────────────┘
-          │ HTTP (Train mode)                    │ HTTP (Assist mode)
-          ▼                                      ▼
-┌─────────────────────────┐       ┌──────────────────────────────────────┐
-│  Train Service          │       │  Graph Service                       │
-│  (Hono, TypeScript)     │       │  (FastAPI, Python)                   │
-│  port :3001             │       │  port :3002                          │
-│                         │       │                                      │
-│  • Session management   │       │  • Neo4j sync engine                 │
-│  • DOM snapshot analysis│       │  • Graph RAG orchestrator            │
-│  • Code analysis        │       │  • Cypher query engine               │
-│  • Docs crawling        │       │  • Access checker (role-based)       │
-│  • Chat extraction      │       │                                      │
-│  • LLM orchestrator     │       │                 │ Bolt protocol      │
-│  • Knowledge store      │──────▶│                 ▼                   │
-│    (JSON + in-memory)   │ sync  │  ┌──────────────────────────────┐   │
-└─────────────────────────┘       │  │  Neo4j (:7687)               │   │
-                                  │  │  Knowledge Graph (CRG)       │   │
-                                  │  └──────────────────────────────┘   │
-                                  └──────────────────────────────────────┘
+┌───────────────────────────────────────────────────┐
+│  Your Application (React SPA)                     │
+│                                                   │
+│  ┌─────────────┐  ┌────────────────────────────┐  │
+│  │  <App />    │  │  CRG Connector             │  │
+│  │  (Your UI)  │  │  • Route monitoring        │  │
+│  └─────────────┘  │  • DOM observation         │  │
+│                   │  • Sidecar UI (Shadow DOM)  │  │
+│  Wrapped by:      └────────────────────────────┘  │
+│  <CRGProvider>                                    │
+└───────────────────────────────────────────────────┘
+          │ Training                  │ Assist
+          ▼                           ▼
+┌──────────────────┐       ┌──────────────────────┐
+│  Train Service   │       │  Graph Service       │
+│  (Node.js)       │       │  (Python)            │
+│                  │       │                      │
+│  • Probe analysis│       │  • Knowledge graph   │
+│  • Code analysis │──────▶│  • Graph RAG queries │
+│  • Docs crawling │ sync  │  • Role-based access │
+│  • Chat training │       └──────────┬───────────┘
+│  • Knowledge store│                │
+└──────────────────┘                 ▼
+                              Neo4j (optional)
+                              Persistent graph DB
 ```
 
 ---
 
-## Package Structure
+## Components
 
-```
-crg-platform/
-└── packages/
-    ├── connector-core/      # Framework-agnostic core (zero runtime deps)
-    │   ├── message-bus.ts   # Internal pub/sub (EventEmitter pattern)
-    │   ├── context-detector.ts
-    │   ├── event-interceptor.ts
-    │   ├── session.ts
-    │   ├── sidecar-mount.ts
-    │   └── probe/
-    │       ├── index.ts     # ProbeOrchestrator
-    │       ├── dom-walker.ts
-    │       ├── element-extractor.ts
-    │       ├── exploration-planner.ts
-    │       └── screenshot.ts
-    │
-    ├── connector-react/     # React adapter (~2.7KB)
-    │   └── CRGProvider.tsx
-    │
-    ├── connector-react-v2/  # Enhanced toolbar UI
-    │   ├── CRGToolbar.tsx
-    │   └── cards/
-    │       ├── ResponseCard.tsx
-    │       ├── FindCard.tsx
-    │       ├── LearnCard.tsx
-    │       └── PracticeCard.tsx
-    │
-    ├── sidecar-ui/          # Preact training sidecar (~13KB)
-    │   ├── App.tsx          # Train mode
-    │   ├── AssistApp.tsx    # Assist mode
-    │   └── components/
-    │
-    └── train-service/       # Hono backend (port 3001)
-        ├── routes/
-        │   ├── session.ts
-        │   ├── probe.ts
-        │   ├── knowledge.ts
-        │   └── chat.ts
-        ├── llm/
-        │   ├── orchestrator.ts  # Claude API wrapper
-        │   └── prompts.ts
-        └── store/
-            └── knowledge-store.ts
-```
+### CRG Connector
+The connector is a TypeScript library that embeds in your React app via `CRGProvider`. It:
+- Observes route changes and DOM mutations
+- Captures page snapshots during training
+- Renders the training sidecar and assist toolbar in an isolated Shadow DOM (no CSS conflicts)
+- Sends data to the Train Service and receives responses from the Graph Service
+
+### Train Service
+A lightweight Node.js backend that handles all knowledge extraction during training:
+- Analyzes DOM snapshots using Claude (AI)
+- Processes TypeScript source code to extract routes, models, and permissions
+- Crawls documentation sites and extracts knowledge
+- Accepts conversational input from your team
+- Persists extracted knowledge as structured facts (RDF triples)
+
+### Graph Service (optional)
+A Python backend that provides advanced querying over Neo4j:
+- Syncs knowledge from the Train Service into a property graph
+- Handles Graph RAG queries for the Assist mode
+- Enforces role-based access — users only see what their role can access
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| Core Library | TypeScript 5.x | Framework-agnostic connector |
-| React Integration | React 18+ | `CRGProvider` wrapper |
-| Training Sidecar | Preact 10.x | Lightweight sidecar UI (~13KB) |
-| Assist Toolbar | React + react-markdown | Enhanced FLPR toolbar |
-| Train Service | Hono + Node.js | Knowledge extraction backend |
-| LLM Client | Anthropic SDK | Claude API calls |
-| HTML Processing | jsdom + @mozilla/readability | Docs crawling |
-| HTML→Markdown | turndown | Docs content conversion |
-| Graph Service | FastAPI + Python | Neo4j sync and Graph RAG |
-| Knowledge Graph | Neo4j 5.x | Persistent graph storage |
-| Bundler | tsup | All packages |
-
----
-
-## Data Flow: Training
-
-```
-User starts training
-        │
-        ▼
-Sidecar UI emits: training:start
-        │
-        ▼
-ProbeOrchestrator starts
-  ├── DOMWalker serializes current page
-  ├── Screenshot captured (html2canvas)
-  └── Snapshot sent to Train Service
-        │
-        ▼
-Train Service: POST /api/probe/analyze-enhanced
-  ├── Claude analyzes DOM + screenshot
-  └── Returns: Page understanding, elements, workflows, triples
-        │
-        ▼
-KnowledgeStore.addTriples()
-  ├── Deduplication
-  ├── Confidence resolution
-  └── JSON persistence
-        │
-        ▼
-(Optional) AutoSyncManager.syncToGraph()
-  └── Graph Service writes to Neo4j
-```
-
-## Data Flow: Assist
-
-```
-User types question
-        │
-        ▼
-Intent classification (FIND / LEARN / PRACTICE / REMEMBER)
-        │
-        ▼
-POST /api/assist/chat
-  ├── Graph Service: retrieve relevant triples (Graph RAG)
-  ├── Role-based filtering (userRole)
-  └── Claude generates grounded response
-        │
-        ▼
-Mode-specific UI renders:
-  FIND     → FindCard + ghost layer navigation
-  LEARN    → LearnCard (inline → conversation)
-  PRACTICE → WalkthroughOverlay + GhostLayer
-  REMEMBER → Timeline card + context
-```
+| Layer | Technology |
+|---|---|
+| Connector | TypeScript (framework-agnostic core) |
+| React Integration | React 18+ |
+| Sidecar UI | Preact (lightweight, isolated in Shadow DOM) |
+| Train Service | Hono + Node.js |
+| AI Inference | Anthropic Claude API |
+| Graph Service | FastAPI + Python |
+| Knowledge Graph | Neo4j (optional) |
 
 ---
 
 ## Key Design Decisions
 
-**Why TypeScript + Python (mixed stack)?**
-TypeScript for browser-side code (connector, sidecar, Train Service). Python for the Graph Service — leverages the ML/graph ecosystem (Neo4j drivers, graph algorithms, LangChain).
-
 **Why Shadow DOM for the sidecar?**
-The sidecar UI lives in a Shadow DOM container so its CSS is fully isolated from the host app. ConCRG never breaks the host app's styles.
+ConCRG's UI lives in a Shadow DOM container so its styles are fully isolated. ConCRG never affects your app's CSS, and your app's CSS never affects ConCRG.
 
-**Why Hono for the Train Service?**
-Hono is ~14KB, native TypeScript, and runs on Node, Deno, Bun, and Cloudflare Workers. It enables edge deployment without rewriting the service.
+**Why two backend services?**
+The Train Service is TypeScript to match the browser-side tooling. The Graph Service is Python to leverage the ML and graph ecosystem (Neo4j drivers, graph algorithms). Each does what its language is best at.
 
-**Why file-based knowledge store (not just Neo4j)?**
-The JSON knowledge store works without infrastructure. Teams can start with zero dependencies and add Neo4j when they need persistent graph querying.
+**Why file-based knowledge store?**
+The JSON knowledge store works with zero infrastructure — no database required to get started. Teams can add Neo4j when they need persistent graph querying and Graph RAG.

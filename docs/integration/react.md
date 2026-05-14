@@ -103,24 +103,9 @@ function AuthenticatedApp({ user }) {
 
 ---
 
-## What CRGProvider Does Internally
-
-When mounted, `CRGProvider`:
-
-1. Initializes the **MessageBus** (internal pub/sub)
-2. Starts the **ContextDetector** (URL/route change monitoring)
-3. Initializes the **EventInterceptor** (network request monitoring)
-4. Connects a **SessionManager** to the Train Service
-5. Mounts the **Sidecar UI** into a Shadow DOM container (doesn't pollute your CSS)
-6. If `backgroundCapture.enabled`, starts the **BackgroundCaptureService**
-
-All services communicate through the MessageBus and are torn down on unmount.
-
----
-
 ## Using with React Router
 
-CRGProvider works with any router. The ContextDetector polls `window.location` for changes, so no special integration is needed.
+CRGProvider works with any router with no special integration needed.
 
 For best results with React Router's nested layouts:
 

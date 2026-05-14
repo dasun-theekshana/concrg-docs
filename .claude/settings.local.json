@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Altrium\\\\concierge\\\\crg-platform\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(grep -E \"\\\\.md$\")",
+      "mcp__claude_ai_Google_Drive__search_files",
+      "mcp__claude_ai_Google_Drive__read_file_content",
+      "Bash(Get-Content \"C:\\\\Users\\\\Dasun\\\\.claude\\\\projects\\\\C--Altrium-concierge-crg-product-documentation\\\\3fdd8d3d-5dc6-410a-8419-73cdaf59bda2\\\\tool-results\\\\mcp-claude_ai_Google_Drive-search_files-1778759676182.txt\")",
+      "Bash(Select-Object -First 200)",
+      "Bash(Out-String)",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); files=data.get\\('files',[]\\); [print\\(f['id'], f['mimeType'], f['title']\\) for f in files[:50]]\")",
+      "PowerShell($content = Get-Content \"C:\\\\Users\\\\Dasun\\\\.claude\\\\projects\\\\C--Altrium-concierge-crg-product-documentation\\\\3fdd8d3d-5dc6-410a-8419-73cdaf59bda2\\\\tool-results\\\\mcp-claude_ai_Google_Drive-search_files-1778759676182.txt\" -Raw; $data = $content | ConvertFrom-Json; $data.files | Select-Object id, title, mimeType | Format-Table -AutoSize)",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\Dasun\\\\.claude\\\\projects\\\\C--Altrium-concierge-crg-product-documentation\\\\3fdd8d3d-5dc6-410a-8419-73cdaf59bda2\\\\tool-results\\\\toolu_01XzFatjebn3HQ9sbr1xhEys.txt\" -Raw | Select-String -Pattern '\"fileContent\":\"\\(.{1,8000}\\)' | ForEach-Object { $_.Matches[0].Groups[1].Value })",
+      "PowerShell(pnpm *)"
+    ]
+  }
+}

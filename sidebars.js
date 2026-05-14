@@ -50,7 +50,6 @@ const sidebars = {
       label: 'Integration',
       items: [
         'integration/react',
-        'integration/configuration',
         'integration/architecture',
       ],
     },
@@ -62,13 +61,6 @@ const sidebars = {
         'concepts/adaptive-response',
         'concepts/sentient-software',
         'concepts/practice-as-assessment',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Contributing',
-      items: [
-        'contributing/setup-guide',
       ],
     },
   ],

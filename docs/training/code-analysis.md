@@ -68,50 +68,9 @@ const config = {
 
 Then in the training panel, enable **Code** as a source and click Start Training.
 
-Programmatically:
-
-```typescript
-messageBus.emit('code:analyze', {
-  path: '/workspace/my-app/src',
-});
-```
-
 ### Option B: Zip Upload
 
-If the Train Service is running remotely, upload a zip of your source:
-
-```typescript
-messageBus.emit('code:upload', {
-  zipPath: '/tmp/my-app-src.zip',
-});
-```
-
-Or from the training panel: click "Upload ZIP" in the Code section.
-
----
-
-## Streaming Progress
-
-Code analysis streams progress in real time:
-
-```typescript
-messageBus.on('code:analysis:progress', (data) => {
-  console.log(`Processing: ${data.file} (${data.filesComplete}/${data.totalFiles})`);
-  console.log(`Triples so far: ${data.triplesExtracted}`);
-});
-```
-
----
-
-## Code Analysis Events
-
-| Event | Description |
-|---|---|
-| `code:analyze` | Trigger local analysis |
-| `code:upload` | Trigger zip upload analysis |
-| `code:analysis:progress` | Per-file progress update |
-| `code:analysis:complete` | Analysis finished with results |
-| `code:analysis:error` | Error during analysis |
+If the Train Service is running remotely, upload a zip of your source via the training panel: click "Upload ZIP" in the Code section.
 
 ---
 

@@ -73,26 +73,7 @@ interface Page {
 
 ## Persistence
 
-Knowledge is stored at two levels:
-
-### 1. Local JSON Store
-The Train Service maintains `data/{appId}/knowledge.json` — an in-memory array flushed to disk. Fast reads, no dependencies.
-
-### 2. Neo4j Graph (optional)
-For production deployments, triples sync to Neo4j via the Graph Service. This enables:
-- **Cypher queries** — traverse relationships efficiently
-- **Graph RAG** — retrieve context paths, not just flat chunks
-- **Path-finding** — answer "How do I get from A to B?" queries
-- **Persistent history** — track knowledge changes over time
-
-### Sync
-
-```typescript
-// Triggered from sidecar UI or programmatically
-await autoSyncManager.syncToGraph();
-```
-
-Sync can be full (rebuild from scratch) or incremental (delta since last sync).
+Knowledge is stored locally by the Train Service with no external dependencies required. For production deployments, knowledge optionally syncs to a Neo4j graph database, enabling persistent storage, faster queries, and change tracking over time. Sync is triggered from the training panel and can be full (rebuild) or incremental (delta only).
 
 ---
 
@@ -113,18 +94,4 @@ Graph RAG excels at **relational** and **navigational** queries — exactly the 
 
 ## Viewing the Knowledge Graph
 
-During training, the sidecar UI shows a live count of triples:
-
-```
-Knowledge Base
-─────────────────────────
-Pages discovered:     24
-Workflows mapped:      8
-Triples extracted:   412
-  ├── Probe:         198
-  ├── Code:          147
-  ├── Docs:           52
-  └── Chat:           15
-```
-
-You can inspect, filter, and delete triples from the Knowledge tab of the training panel.
+During training, the sidecar UI shows a live count of facts extracted per source — pages discovered, workflows mapped, and total triples. You can inspect, filter, and delete triples from the Knowledge tab of the training panel.

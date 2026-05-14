@@ -60,12 +60,4 @@ The underlying behaviour (journey tracking + contextual recall) stays the same r
 
 ## Privacy
 
-User journey data is stored per `userId` in the knowledge store. It is:
-- Local by default (Train Service, your infrastructure)
-- Never sent to third parties
-- Deletable on request via the knowledge API
-
-```bash
-# Delete all journey data for a user
-DELETE /api/knowledge/{appId}/users/{userId}
-```
+User journey data is stored locally on your infrastructure and is never sent to third parties. It can be deleted on request.
