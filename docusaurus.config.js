@@ -7,10 +7,10 @@ const config = {
   tagline: 'Making Software Sentient',
   favicon: 'img/logo.svg',
 
-  url: 'https://altrium-io.github.io',
-  baseUrl: '/concrg-docs/',
+  url: 'https://docs.concrg.ai',
+  baseUrl: '/',
 
-  organizationName: 'altrium-io',
+  organizationName: 'dasun-theekshana',
   projectName: 'concrg-docs',
 
   onBrokenLinks: 'throw',
