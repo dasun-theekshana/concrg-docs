@@ -1,20 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="40" height="40">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 13.61 11.6">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#5B3FE8;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    <style>
+      .cls-1 { fill: url(#linear-gradient-2); }
+      .cls-2 { fill: url(#linear-gradient); }
+    </style>
+    <linearGradient id="linear-gradient" x1="7.82" y1="-.46" x2="2.85" y2="8.53" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0986cc"></stop>
+      <stop offset="1" stop-color="#29abe2"></stop>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="2.65" y1="11.43" x2="14.25" y2="3.55" gradientUnits="userSpaceOnUse">
+      <stop offset=".27" stop-color="#29abe2"></stop>
+      <stop offset="1" stop-color="#84b7fe"></stop>
     </linearGradient>
   </defs>
-  <!-- Graph nodes representing the CRG -->
-  <circle cx="100" cy="40" r="20" fill="url(#grad)"/>
-  <circle cx="40" cy="140" r="20" fill="url(#grad)"/>
-  <circle cx="160" cy="140" r="20" fill="url(#grad)"/>
-  <!-- Edges -->
-  <line x1="100" y1="60" x2="55" y2="125" stroke="#5B3FE8" stroke-width="4" stroke-linecap="round"/>
-  <line x1="100" y1="60" x2="145" y2="125" stroke="#5B3FE8" stroke-width="4" stroke-linecap="round"/>
-  <line x1="60" y1="140" x2="140" y2="140" stroke="#5B3FE8" stroke-width="4" stroke-linecap="round"/>
-  <!-- Inner dots -->
-  <circle cx="100" cy="40" r="8" fill="white"/>
-  <circle cx="40" cy="140" r="8" fill="white"/>
-  <circle cx="160" cy="140" r="8" fill="white"/>
+  <path class="cls-2" d="M3.21,9.79c-.26,0-.51-.07-.72-.19-.2-.12-.37-.29-.49-.5-.12-.21-.19-.44-.19-.67,0-.25.06-.49.19-.71l3.01-5.21c.13-.23.31-.4.52-.52.41-.23.95-.23,1.35,0,.22.12.39.29.52.52l.16.28c.47-.17.98-.26,1.51-.26.15,0,.3,0,.45.02l-.55-.95c-.58-1-1.61-1.6-2.77-1.6s-2.19.6-2.77,1.6L.43,6.81c-.58,1-.58,2.19,0,3.2.58,1,1.5,1.59,2.66,1.59l.12-1.81Z"></path>
+  <path class="cls-1" d="M9.08,2.53c-2.47,0-4.48,1.98-4.54,4.43,0,.05-.01.09-.01.14,0,.47.38.86.86.86.47,0,.86-.38.86-.86,0-.03,0-.06,0-.09.03-1.54,1.29-2.78,2.84-2.78s2.84,1.27,2.84,2.84-1.27,2.73-2.83,2.73H3.2s-.11,1.8-.11,1.8h3.32-.02s2.68,0,2.68,0c2.5,0,4.54-2.04,4.54-4.54s-2.04-4.54-4.54-4.54Z"></path>
 </svg>
