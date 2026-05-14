@@ -7,8 +7,8 @@ const config = {
   tagline: 'Making Software Sentient',
   favicon: 'img/logo.svg',
 
-  url: 'https://docs.concrg.ai',
-  baseUrl: '/',
+  url: 'https://dasun-theekshana.github.io',
+  baseUrl: '/concrg-docs/',
 
   organizationName: 'dasun-theekshana',
   projectName: 'concrg-docs',
