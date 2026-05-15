@@ -51,6 +51,8 @@ const sidebars = {
       label: 'Integration',
       items: [
         'integration/react',
+        'integration/angular',
+        'integration/vue',
       ],
     },
     {
