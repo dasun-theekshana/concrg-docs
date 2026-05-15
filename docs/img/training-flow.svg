@@ -1,0 +1,60 @@
+<svg viewBox="0 0 760 440" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+
+  <!-- Source boxes -->
+  <!-- Probe -->
+  <rect x="22" y="30" width="158" height="90" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <circle cx="55" cy="62" r="16" fill="#7c3aed"/>
+  <text x="55" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="white">P</text>
+  <text x="80" y="58" font-size="13" font-weight="700" fill="#4c1d95">Probe</text>
+  <text x="80" y="76" font-size="11" fill="#6d28d9">DOM explorer</text>
+  <text x="38" y="106" font-size="10" fill="#6b7280">Discovers pages &amp; UI elements</text>
+
+  <!-- Code -->
+  <rect x="202" y="30" width="158" height="90" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="235" cy="62" r="16" fill="#2563eb"/>
+  <text x="235" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="white">C</text>
+  <text x="260" y="58" font-size="13" font-weight="700" fill="#1e3a8a">Code</text>
+  <text x="260" y="76" font-size="11" fill="#2563eb">Frontend source</text>
+  <text x="218" y="106" font-size="10" fill="#6b7280">Routes, models &amp; permissions</text>
+
+  <!-- Docs -->
+  <rect x="382" y="30" width="158" height="90" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <circle cx="415" cy="62" r="16" fill="#059669"/>
+  <text x="415" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="white">D</text>
+  <text x="440" y="58" font-size="13" font-weight="700" fill="#064e3b">Docs</text>
+  <text x="440" y="76" font-size="11" fill="#059669">Web crawl</text>
+  <text x="398" y="106" font-size="10" fill="#6b7280">Concepts &amp; feature descriptions</text>
+
+  <!-- Chat -->
+  <rect x="562" y="30" width="158" height="90" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <circle cx="595" cy="62" r="16" fill="#ea580c"/>
+  <text x="595" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="white">Ch</text>
+  <text x="620" y="58" font-size="13" font-weight="700" fill="#7c2d12">Chat</text>
+  <text x="620" y="76" font-size="11" fill="#ea580c">Conversation</text>
+  <text x="578" y="106" font-size="10" fill="#6b7280">Business rules &amp; domain logic</text>
+
+  <!-- Converging lines from sources to train service -->
+  <line x1="101" y1="120" x2="340" y2="210" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="281" y1="120" x2="360" y2="210" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="461" y1="120" x2="400" y2="210" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="641" y1="120" x2="420" y2="210" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- Train Service -->
+  <rect x="230" y="210" width="300" height="90" rx="12" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+  <text x="380" y="242" text-anchor="middle" font-size="15" font-weight="700" fill="#312e81">Train Service</text>
+  <text x="380" y="263" text-anchor="middle" font-size="11" fill="#4338ca">AI-powered knowledge extraction</text>
+  <text x="380" y="285" text-anchor="middle" font-size="10" fill="#6b7280">Analyzes each source, extracts facts, resolves conflicts</text>
+
+  <!-- Arrow down to Knowledge Store -->
+  <line x1="380" y1="300" x2="380" y2="345" stroke="#475569" stroke-width="2"/>
+  <polygon points="374,340 386,340 380,350" fill="#475569"/>
+
+  <!-- RDF Triples label -->
+  <text x="392" y="330" font-size="10" fill="#64748b">RDF Triples</text>
+
+  <!-- Knowledge Store -->
+  <rect x="230" y="355" width="300" height="70" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+  <text x="380" y="382" text-anchor="middle" font-size="15" font-weight="700" fill="#1e293b">Knowledge Store</text>
+  <text x="380" y="402" text-anchor="middle" font-size="11" fill="#475569">Your app's knowledge graph · grows over time</text>
+
+</svg>
