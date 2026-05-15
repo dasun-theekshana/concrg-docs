@@ -69,4 +69,4 @@ ConCRG's core differentiator is its **knowledge graph** — the app understands 
 
 - [Quick Start →](/getting-started/quick-start) — Add ConCRG to your React app in 5 minutes
 - [S-FLPR Framework →](/how-it-works/s-flpr-framework) — Understand the five modes in depth
-- [Architecture →](/integration/architecture) — See how all the pieces fit together
+- [Architecture →](/how-it-works/architecture) — See how all the pieces fit together
