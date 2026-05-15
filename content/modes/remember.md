@@ -14,12 +14,9 @@ REMEMBER helps returning users reconnect with features they've already learned. 
 
 ## How It Works
 
-ConCRG tracks a user's journey through the app per feature:
+ConCRG tracks each user's familiarity with every feature over time:
 
-```
-Feature Journey States:
-  discovered → learned → practiced → mastered
-```
+![Journey Stages](/img/journey-stages.svg)
 
 When a user asks about something they've already encountered, ConCRG responds with memory context:
 
@@ -41,9 +38,9 @@ This surfaces the right information faster than re-reading an explanation they'v
 
 ---
 
-## REMEMBER is Not a Separate Mode (Technically)
+## REMEMBER is Not a Separate Mode
 
-REMEMBER isn't a distinct UI — it's a modifier that enriches FIND and LEARN responses when journey history exists. The user never selects "REMEMBER mode." They just ask naturally, and ConCRG blends recall into its response.
+REMEMBER isn't a distinct UI — it's a modifier that enriches FIND and LEARN responses when history exists. The user never selects "REMEMBER mode." They just ask naturally, and ConCRG blends recall into its response.
 
 ---
 
@@ -54,10 +51,10 @@ User testing found that "REMEMBER" created confusion with task reminders. This m
 - **"My History"** — emphasis on timeline and past activity
 - **"Shortcuts"** — emphasis on speed for experienced users
 
-The underlying behaviour (journey tracking + contextual recall) stays the same regardless of naming.
+The underlying behaviour stays the same regardless of naming.
 
 ---
 
 ## Privacy
 
-User journey data is stored locally on your infrastructure and is never sent to third parties. It can be deleted on request.
+User history is stored locally on your infrastructure and is never sent to third parties. It can be deleted on request.

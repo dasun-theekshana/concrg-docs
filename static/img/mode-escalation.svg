@@ -1,0 +1,23 @@
+<svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+
+  <!-- Response card -->
+  <rect x="20" y="20" width="560" height="120" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Response text -->
+  <text x="44" y="52" font-size="13" font-weight="600" fill="#1e293b">"Invoices is in Billing › Invoices."</text>
+
+  <!-- Buttons -->
+  <rect x="44" y="70" width="96" height="36" rx="8" fill="#5B3FE8"/>
+  <text x="92" y="92" text-anchor="middle" font-size="12" font-weight="600" fill="white">Go there</text>
+
+  <rect x="152" y="70" width="170" height="36" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="237" y="92" text-anchor="middle" font-size="12" fill="#1e293b">How does it work? →</text>
+
+  <rect x="334" y="70" width="210" height="36" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="439" y="92" text-anchor="middle" font-size="12" fill="#1e293b">Show me how to use it →</text>
+
+  <!-- Labels -->
+  <text x="237" y="126" text-anchor="middle" font-size="10" fill="#059669">LEARN escalation</text>
+  <text x="439" y="126" text-anchor="middle" font-size="10" fill="#ea580c">PRACTICE escalation</text>
+
+</svg>

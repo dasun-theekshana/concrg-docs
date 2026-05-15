@@ -18,10 +18,10 @@ S-FLPR is ConCRG's model for how users experience assistance inside software. It
 ConCRG monitors behavioral signals to detect confusion before the user asks for help. When a frustration pattern is detected, it proactively offers the right mode.
 
 **Detection signals:**
-- Dwell time (5+ seconds on a page without action)
-- Rage clicks (3+ rapid clicks on the same element)
-- Dead clicks (clicking non-interactive elements)
-- Oscillation (repeated back-and-forth navigation)
+- Extended inactivity on a page without taking action
+- Repeated rapid clicking on the same element
+- Clicking elements that don't respond as expected
+- Back-and-forth navigation between the same pages
 
 ### FIND
 The entry point for most users when they're stuck. FIND answers "where is it?" and takes them there.
@@ -63,16 +63,7 @@ For returning users who have done something before but need a refresher. REMEMBE
 
 Users don't think in modes — they think in tasks. The FLPR progression maps to how anyone learns a new tool:
 
-```
-First encounter with a feature:
-  FIND → LEARN → PRACTICE
-
-Returning after time away:
-  FIND (or SENSE) → REMEMBER → PRACTICE (quick refresh)
-
-Power user:
-  FIND → done (they know the rest)
-```
+![Natural User Journey](/img/natural-journey.svg)
 
 ConCRG tracks where each user is in this journey **per feature** and adapts accordingly. The same question — *"tell me about invoicing"* — gets a different answer depending on whether the user has never visited Invoicing, has found it but never used it, or used it last month.
 

@@ -16,7 +16,7 @@ This is ConCRG's north star — the vision that shapes every feature decision.
 
 Today, there are two kinds of product knowledge:
 
-**Implicit knowledge** — what the software can do, how it's structured, what each workflow requires, who can access what. This lives in the code, in the database schema, in the product team's heads. It's accurate but inaccessible.
+**Implicit knowledge** — what the software can do, how it's structured, what each workflow requires, who can access what. This lives in the product itself and in the team's heads. It's accurate but inaccessible to users.
 
 **Explicit knowledge** — what someone wrote down about the software. Help articles, tooltips, onboarding tours, documentation sites. This is accessible but goes stale the moment the next release ships.
 
@@ -47,7 +47,7 @@ Every feature decision should move toward this vision. A useful question:
 - **Yes** → It's a compromise. It works, but it's not sentient software — it's better-organized manual content.
 - **No** → It's aligned. The software is speaking for itself.
 
-Probing the DOM → aligned. Writing tooltips → compromise. Crawling existing docs → compromise (but a practical bridge). Training via chat → compromise (but valuable for tacit knowledge).
+Exploring the interface → aligned. Writing tooltips → compromise. Training via conversation → compromise (but valuable for tacit knowledge the interface can't reveal).
 
 The goal is to progressively reduce reliance on human content creation until the software can explain itself completely from its own structure.
 
@@ -57,7 +57,7 @@ The goal is to progressively reduce reliance on human content creation until the
 
 The problems ConCRG solves today:
 - 80% of features go unused because users don't know they exist
-- $25–35 per support ticket for questions the software should be able to answer
+- $25–35 per support ticket for questions the software should answer itself
 - Help docs are out of date before the sprint is done
 
 The promise of sentient software:
@@ -71,12 +71,12 @@ The promise of sentient software:
 
 | Capability | Status |
 |---|---|
-| Autonomous DOM mapping (Probe) | ✅ Shipped |
-| Code-derived knowledge extraction | ✅ Shipped |
+| Autonomous interface mapping | ✅ Shipped |
+| Source-derived knowledge extraction | ✅ Shipped |
 | Natural language Q&A (FIND, LEARN) | ✅ Shipped |
 | Guided walkthroughs (PRACTICE) | ✅ Shipped |
-| Persistent graph (Neo4j) | ✅ Shipped |
-| Background capture (continuous learning) | ✅ Shipped |
+| Persistent knowledge graph | ✅ Shipped |
+| Continuous background learning | ✅ Shipped |
 | Proactive SENSE triggers | 🔄 In progress |
 | Product changelog awareness | 🔮 Future |
 | Cross-release knowledge diffing | 🔮 Future |

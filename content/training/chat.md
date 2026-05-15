@@ -24,7 +24,7 @@ Use Chat when you know something that isn't in the UI, the code, or the docs:
 
 ## How It Works
 
-You have a natural conversation with ConCRG. It listens, asks clarifying questions, and converts your explanations into RDF triples.
+You have a natural conversation with ConCRG. It listens, asks clarifying questions, and confirms its understanding before saving the knowledge.
 
 ```
 You: The "archived" status means the deal is closed but the
@@ -39,8 +39,7 @@ ConCRG: Got it. Let me make sure I have this right:
 You: Yes. And archived deals still count in the contact's
      lifetime value calculation.
 
-ConCRG: Noted. Adding that to the knowledge graph:
-         "Archived deals" → "included_in" → "Contact LTV calculation"
+ConCRG: Noted. Added to the knowledge graph.
 ```
 
 ---
@@ -62,17 +61,3 @@ From the training panel:
 - **Correct misunderstandings** — If ConCRG misinterprets something, correct it in the next message
 - **Use your real terminology** — Teach ConCRG the words your users use, not generic software terms
 - **Train role by role** — Describe what each user role can and can't do separately
-
----
-
-## What Gets Stored
-
-Each exchange produces one or more triples:
-
-| Your Statement | Triple |
-|---|---|
-| "Bond settlement has stricter validation than equity" | `bond_settlement → stricter_than → equity_settlement` |
-| "Users can't delete contacts within 30 days" | `delete_contact → time_restriction → 30_days_minimum` |
-| "Archived deals still count in LTV" | `archived_deal → included_in → contact_ltv_calculation` |
-
-These triples are tagged with `source: "chat"` and `confidence: 0.9` (high — direct human input).

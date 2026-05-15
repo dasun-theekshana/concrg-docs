@@ -14,14 +14,11 @@ This is a future capability — the architecture keeps it open. It's documented 
 
 ## The Insight
 
-PRACTICE currently means "guide me through a workflow." The same infrastructure can flip to **assessment mode**: guide removed, scoring added.
+PRACTICE currently means "guide me through a workflow." The same infrastructure can flip to **assessment mode**: guidance removed, outcome scored.
 
-```
-PRACTICE (learning)  →  PRACTICE (testing)  →  PRACTICE (certification)
-"Show me how"            "Can you do it?"        "Prove you can do it"
-```
+![Practice Progression](/img/practice-progression.svg)
 
-ConCRG already knows every step of every workflow. It already guides users through them. Removing the guidance and scoring the outcome is a small UX change but a massive value expansion.
+ConCRG already knows every step of every workflow. It already guides users through them. Removing the guidance and scoring the outcome is a small UX change with a significant expansion in value.
 
 ---
 
@@ -33,10 +30,10 @@ ConCRG already knows every step of every workflow. It already guides users throu
 Instead of A/B tests and session recordings, teams get direct workflow proficiency data.
 
 **Compliance officers:**
-Proof that employees have been trained on critical workflows. A complete audit trail — who practiced, when, how many attempts, accuracy score.
+Proof that employees have been trained on critical workflows — who completed what, when, and how accurately.
 
 **For brokerage workflows, for example:**
-- Traders practice bond settlement guided
+- Traders practice bond settlement with guidance
 - Then attempt it unguided
 - Dashboard shows proficiency per trader per workflow
 - Compliance officer has defensible records
@@ -45,25 +42,12 @@ Proof that employees have been trained on critical workflows. A complete audit t
 
 ## The Progression
 
-| Phase | User Experience | CRG's Role |
+| Phase | User Experience | ConCRG's Role |
 |---|---|---|
 | **Guided practice** | "Walk me through this" | Leads every step with highlights and explanations |
 | **Supervised exploration** | "Let me try" | Watches silently, intervenes only if stuck |
 | **Unguided assessment** | "Show me you can do it" | Watches and scores, no guidance offered |
-| **Certification** | "Prove competency" | Records outcome, timestamp, accuracy to audit log |
-
----
-
-## Design Implications
-
-For this to work, the PRACTICE infrastructure must:
-
-1. **Track sessions** — session ID, timestamps, steps completed, accuracy, time per step
-2. **Support guided and unguided modes** — same UX, different tooltip visibility
-3. **Store proficiency data** — `User X, Workflow Y, attempts, accuracy, last_completed`
-4. **Expose a dashboard** — "Team Proficiency" view (future Portal feature)
-
-These requirements should inform current PRACTICE implementation decisions, even before the assessment feature ships.
+| **Certification** | "Prove competency" | Records outcome and accuracy |
 
 ---
 

@@ -31,7 +31,7 @@ Past failures with in-app help have trained users to stop looking. A resourceful
 
 ConCRG is an **AI concierge** that lives inside your application. It:
 
-1. **Learns your app automatically** — through DOM probing, code analysis, docs crawling, and conversation
+1. **Learns your app automatically** — through interface exploration, code analysis, docs crawling, and conversation
 2. **Builds a knowledge graph** — a structured map of every page, workflow, role, and relationship in your product
 3. **Answers questions in context** — right when the user needs help, without leaving the app
 4. **Guides through workflows** — step-by-step, with no consequences for mistakes
@@ -58,7 +58,7 @@ ConCRG organizes user assistance around five modes that mirror the natural journ
 | Competitor | Approach | ConCRG Difference |
 |---|---|---|
 | WalkMe / Whatfix | Pre-built linear tours | Context-aware, no content authoring required |
-| Pendo | Analytics-driven guidance | Semantic understanding via Graph RAG |
+| Pendo | Analytics-driven guidance | Semantic understanding via knowledge graph |
 | Intercom Fin | Chat support widget | Embedded in workflow, not a separate channel |
 
 ConCRG's core differentiator is its **knowledge graph** — the app understands itself structurally and semantically, so no human needs to write or maintain help content.

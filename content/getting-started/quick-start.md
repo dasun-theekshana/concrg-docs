@@ -35,12 +35,6 @@ pnpm add @crg/connector-react @crg/connector-react-v2
 The Train Service is the local backend that handles knowledge extraction and AI inference.
 
 ```bash
-npx @crg/train-service
-```
-
-By default it runs on **port 3001**. Set your Anthropic API key first:
-
-```bash
 ANTHROPIC_API_KEY=sk-ant-... npx @crg/train-service
 ```
 

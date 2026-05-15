@@ -16,22 +16,22 @@ ConCRG is a guest in your application. The host app owns 100% of the screen, 100
 
 **Invisible by default.** ConCRG does not render anything when the user is succeeding. The interface is summoned, not present.
 
-**Appears only when called.** The user opens the toolbar when they want it. Alternatively, SENSE mode may proactively offer help — but only when behavioral signals clearly indicate frustration.
+**Appears only when called.** The user opens the toolbar when they want it. Alternatively, SENSE mode may proactively offer help — but only when signals clearly indicate the user is stuck.
 
 **Temporary and dismissable.** Every ConCRG UI element can be dismissed instantly. Nothing persists on screen longer than needed.
 
-**Never competes with host UI.** ConCRG uses the host app's own elements to guide (via the ghost layer) rather than overlaying new UI on top of them. If a choice makes ConCRG more prominent at the expense of the host app, the choice is wrong.
+**Never competes with host UI.** ConCRG guides using the host app's own elements rather than overlaying new UI on top of them. If a choice makes ConCRG more prominent at the expense of the host app, the choice is wrong.
 
-**Shadow DOM isolation.** The sidecar UI lives in a Shadow DOM container. ConCRG's CSS cannot affect the host app's styles, and the host app's CSS cannot affect ConCRG's styles.
+**Fully isolated.** ConCRG's interface lives in a completely isolated layer — its styles cannot affect the host app, and the host app's styles cannot affect ConCRG.
 
 ---
 
-## The Ghost Layer
+## The Visual Guide
 
-The ghost layer is ConCRG's navigation tool that follows the Concierge Principle:
+ConCRG's navigation tool follows the Concierge Principle:
 
-- It highlights existing elements by adding a subtle overlay (not replacing them)
-- It animates along the path the user should take (pointing, not blocking)
+- It highlights existing elements with a subtle overlay — it doesn't replace them
+- It animates the path the user should take — pointing, not blocking
 - It disappears once the user arrives
 
 ---

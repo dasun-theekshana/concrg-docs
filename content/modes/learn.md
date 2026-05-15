@@ -14,17 +14,15 @@ Once users find a feature, they need to understand it. LEARN explains how featur
 
 ## Three Levels of LEARN
 
-Not every question needs a chat window. ConCRG matches the response format to the complexity of the question:
+Not every question needs a full conversation. ConCRG matches the response format to the complexity of the question:
 
 | Level | Example Question | Response Format |
 |---|---|---|
 | **Quick explain** | "What is a pipeline stage?" | Single paragraph inline card |
-| **Conceptual** | "How does the renewals workflow work?" | Expanded card, possibly with structured steps |
+| **Conceptual** | "How does the renewals workflow work?" | Expanded card with structured steps |
 | **Deep understanding** | "What's the relationship between deals, contacts, and invoices?" | Multi-turn conversation |
 
-### Progressive Disclosure
-
-LEARN starts with a self-contained card response. A "Ask a follow-up" input appears at the bottom. If the user engages, the card transitions smoothly into a conversation view. Depth is available — it's never forced.
+LEARN starts with a self-contained card response. A follow-up input appears at the bottom. If the user engages, the card expands into a conversation. Depth is always available — it's never forced.
 
 ---
 
@@ -32,8 +30,8 @@ LEARN starts with a self-contained card response. A "Ask a follow-up" input appe
 
 | User Input | ConCRG Response |
 |---|---|
-| "What is a contact?" | Quick explanation of the Contact data model, its key fields |
-| "How does deal scoring work?" | Explains the scoring algorithm and what factors affect it |
+| "What is a contact?" | Quick explanation, key fields |
+| "How does deal scoring work?" | Explains the scoring factors |
 | "Walk me through how approvals work end-to-end" | Full flow: who initiates, what triggers approval, who approves, outcomes |
 | "What's the difference between a lead and a contact?" | Comparison of both, when to use each |
 
@@ -41,11 +39,11 @@ LEARN starts with a self-contained card response. A "Ask a follow-up" input appe
 
 ## What LEARN Knows
 
-LEARN responses are grounded in the knowledge graph — not in the LLM's training data. This means:
+LEARN responses are grounded in the knowledge graph — not in generic AI training data. This means:
 
 - Explanations use your actual field names, not generic CRM terminology
-- Role-based visibility is respected (users only see what they can access)
-- Workflows described are the actual workflows in your app, not generic examples
+- Role-based visibility is respected — users only see what they can access
+- Workflows described are the actual workflows in your app
 - Terminology matches your product's naming conventions
 
 ---
@@ -54,12 +52,7 @@ LEARN responses are grounded in the knowledge graph — not in the LLM's trainin
 
 LEARN naturally follows FIND. The escalation is built into every FIND response:
 
-```
-"Invoices is in Billing › Invoices."
-
-[Go there]   [How does it work? →]   [Show me how to create one →]
-                  ↑ LEARN
-```
+![Mode Escalation](/img/mode-escalation.svg)
 
 After LEARN, the natural next step is PRACTICE. ConCRG offers it:
 
@@ -68,7 +61,6 @@ After LEARN, the natural next step is PRACTICE. ConCRG offers it:
 set payment terms, and send. Would you like to practice it?"
 
 [Yes, walk me through it →]
-       ↑ PRACTICE
 ```
 
 ---
