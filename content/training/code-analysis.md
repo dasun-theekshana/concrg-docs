@@ -22,18 +22,6 @@ The Code training source analyzes your frontend source files to extract structur
 
 ---
 
-## Running Code Analysis
-
-### Option A: Local source directory
-
-Point ConCRG at your frontend source folder in the training panel. It reads and analyzes the files automatically.
-
-### Option B: Zip upload
-
-If the Train Service is running remotely, upload a zip of your source via the training panel — click **Upload ZIP** in the Code section.
-
----
-
 ## Tips
 
 - **Include your routes file** — ensure your routing configuration is within the source path

@@ -11,7 +11,6 @@ const sidebars = {
       label: 'Getting Started',
       items: [
         'getting-started/quick-start',
-        'getting-started/installation',
       ],
     },
     {
