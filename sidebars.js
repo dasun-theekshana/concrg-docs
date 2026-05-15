@@ -21,6 +21,7 @@ const sidebars = {
       items: [
         'how-it-works/overview',
         'how-it-works/s-flpr-framework',
+        'how-it-works/architecture',
         'how-it-works/knowledge-graph',
         'how-it-works/training-sources',
       ],
@@ -50,7 +51,6 @@ const sidebars = {
       label: 'Integration',
       items: [
         'integration/react',
-        'integration/architecture',
       ],
     },
     {

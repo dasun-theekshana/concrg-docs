@@ -87,7 +87,7 @@ const config = {
             title: 'Integration',
             items: [
               { label: 'React Integration', to: '/integration/react' },
-              { label: 'Architecture', to: '/integration/architecture' },
+              { label: 'Architecture', to: '/how-it-works/architecture' },
             ],
           },
         ],

@@ -12,33 +12,7 @@ ConCRG embeds into your application as a lightweight connector and communicates 
 
 ## System Overview
 
-```
-┌───────────────────────────────────────────────────┐
-│  Your Application (React SPA)                     │
-│                                                   │
-│  ┌─────────────┐  ┌────────────────────────────┐  │
-│  │  <App />    │  │  CRG Connector             │  │
-│  │  (Your UI)  │  │  • Route monitoring        │  │
-│  └─────────────┘  │  • DOM observation         │  │
-│                   │  • Sidecar UI (Shadow DOM)  │  │
-│  Wrapped by:      └────────────────────────────┘  │
-│  <CRGProvider>                                    │
-└───────────────────────────────────────────────────┘
-          │ Training                  │ Assist
-          ▼                           ▼
-┌──────────────────┐       ┌──────────────────────┐
-│  Train Service   │       │  Graph Service       │
-│  (Node.js)       │       │  (Python)            │
-│                  │       │                      │
-│  • Probe analysis│       │  • Knowledge graph   │
-│  • Code analysis │──────▶│  • Graph RAG queries │
-│  • Docs crawling │ sync  │  • Role-based access │
-│  • Chat training │       └──────────┬───────────┘
-│  • Knowledge store│                │
-└──────────────────┘                 ▼
-                              Neo4j (optional)
-                              Persistent graph DB
-```
+![CRG System Architecture](/img/architecture.svg)
 
 ---
 
