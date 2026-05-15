@@ -7,11 +7,11 @@ const config = {
   tagline: 'Making Software Sentient',
   favicon: 'img/logo.svg',
 
-  url: 'https://dasun-theekshana.github.io',
-  baseUrl: '/concrg-docs/',
+  url: 'https://concrg.github.io',
+  baseUrl: '/product-docs/',
 
-  organizationName: 'dasun-theekshana',
-  projectName: 'concrg-docs',
+  organizationName: 'concrg',
+  projectName: 'product-docs',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -56,7 +56,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://github.com/altrium-io/concrg-docs',
+            href: 'https://github.com/concrg/product-docs',
             label: 'GitHub',
             position: 'right',
           },
