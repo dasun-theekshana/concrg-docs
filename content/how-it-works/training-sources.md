@@ -12,71 +12,47 @@ ConCRG learns your application through four complementary sources. They run in p
 
 ## Overview
 
-| Source | Input | What It Learns | LLM Used? |
-|---|---|---|---|
-| **Probe** | Live running app | Pages, navigation, UI elements, workflows | Yes — screen analysis |
-| **Code** | TypeScript source | Routes, data types, permissions, API contracts | Hybrid — AST + LLM |
-| **Docs** | Documentation URL | Concepts, feature descriptions, workflows | Yes — per-page extraction |
-| **Chat** | Conversation with PM/developer | Domain rules, business logic, edge cases | Yes — conversational |
+![Training Flow](/img/training-flow.svg)
 
-You can run all four together or pick a subset. Each source produces RDF triples that are merged into the shared knowledge store.
+| Source | What It Learns |
+|---|---|
+| **Probe** | Pages, navigation paths, UI elements, workflows |
+| **Code (Frontend Source)** | Routes, data models, permissions, component relationships |
+| **Docs** | Concepts, feature descriptions, business-level workflows |
+| **Chat** | Domain rules, business logic, edge cases, terminology |
+
+You can run all four together or pick a subset. Each source produces facts that are merged into the shared knowledge graph.
 
 ---
 
 ## Probe
 
-The Probe is ConCRG's autonomous DOM explorer. It runs inside the host app's browser context — not in a separate Playwright session — so it sees the actual rendered UI with real authentication and data.
+The Probe is ConCRG's autonomous interface explorer. It navigates through your live application — with real authentication and real data — and builds a map of every page it discovers.
 
 **How it works:**
-1. Starts at the app's root route
-2. Serializes the DOM tree (labels, roles, nav links, interactive elements)
-3. Captures a screenshot
-4. Sends the DOM snapshot + screenshot to Claude for analysis
-5. Extracts page understanding, elements, workflows, and triples
-6. Follows navigation links and repeats for each discovered route
+1. Starts at your app's root and navigates outward
+2. Reads the page structure, interactive elements, and navigation links
+3. Sends each page view to AI for analysis
+4. Extracts page understanding, elements, workflows, and relationships
+5. Follows links and repeats for every discovered route
 
-**Crawler modes:**
-- `legacy` — Breadth-first queue walker
-- `stategraph` — Models the app as a state machine; discovers transitions, modal states, and conditional UI
-
-**Configuration:**
-```typescript
-crawlerMode: 'stategraph',
-crawler: {
-  maxNodes: 50,
-  maxActionsPerNode: 10,
-  maxInstancesPerRoutePattern: 3,
-}
-```
+The Probe sees your app exactly as your users do — no separate test environment or mocked data.
 
 [Deep dive: Probe training →](/training/probe)
 
 ---
 
-## Code
+## Code (Frontend Source)
 
-The Code source analyzes your TypeScript source files to extract structural knowledge that's hard to observe from the DOM alone — route definitions, interface shapes, permission guards, and API contracts.
+The Code source reads your frontend source files to extract structural knowledge that's hard to observe from the interface alone — route definitions, data models, and permission rules.
 
 **What it extracts:**
-- Route declarations and their corresponding components
-- TypeScript interfaces (data models)
-- JSX structure and prop relationships
-- API endpoint handlers and their contracts
-- Permission/role guards on routes and components
+- Every route and its corresponding page component
+- Data model shapes and relationships
+- Permission and role guards on routes and components
+- Component structure and relationships
 
-**Two modes:**
-- **Deterministic** — TypeScript AST parsing (fast, precise)
-- **LLM-enhanced** — Claude interprets complex handlers and business logic (`useAgents: true`)
-
-**Setup:**
-```typescript
-const config = {
-  sourceCodePath: '/absolute/path/to/your/src',
-  useAgentsV2: true,   // recommended for complex codebases
-};
-```
-
-Or upload a zip file via the training panel for remote analysis.
+Point it at your frontend source directory and it handles the rest. You can also upload a zip file via the training panel.
 
 [Deep dive: Code analysis →](/training/code-analysis)
 
@@ -84,24 +60,16 @@ Or upload a zip file via the training panel for remote analysis.
 
 ## Docs
 
-The Docs source crawls your existing documentation website and extracts product knowledge from it. Useful for bridging the gap between what your app can do (Probe + Code) and the business-level concepts behind it (Docs).
+The Docs source crawls your existing documentation and extracts product knowledge from it. Useful for bridging the gap between what your app can do (Probe + Code) and the business-level concepts behind it.
 
 **How it works:**
-1. Starts at the `docsUrl` you configure
+1. Starts at your documentation URL
 2. Discovers all linked pages within the same domain
-3. Extracts article content using `@mozilla/readability`
-4. Converts HTML to Markdown
-5. Sends each page to Claude for knowledge extraction (batched)
-6. Streams progress in real time as pages are processed
+3. Extracts and converts article content
+4. Sends each page to AI for knowledge extraction
+5. Streams progress in real time as pages are processed
 
-**Setup:**
-```typescript
-const config = {
-  docsUrl: 'https://docs.yourproduct.com',
-};
-```
-
-**Streaming response:** The docs crawl streams NDJSON progress updates so you can see pages being processed in real time.
+**Setup:** Provide your docs URL in the training panel or configuration.
 
 [Deep dive: Docs crawling →](/training/docs-crawl)
 
@@ -109,9 +77,9 @@ const config = {
 
 ## Chat
 
-The Chat source lets you teach ConCRG directly through conversation. This is ideal for domain knowledge that isn't visible in the UI or documented anywhere — business rules, edge cases, terminology, "why does this work this way?" context.
+The Chat source lets you teach ConCRG directly through conversation. Ideal for domain knowledge that isn't visible in the UI or documented anywhere — business rules, edge cases, terminology, and the "why" behind product decisions.
 
-**Example conversation:**
+**Example:**
 ```
 You: In our system, a "settlement" only applies to bond trades,
      not equity trades. The UI looks the same but the validation
@@ -122,7 +90,7 @@ ConCRG: Got it. I'll record that settlement workflows for bonds
          what the key differences are?
 ```
 
-Each exchange is converted into knowledge triples and added to the store.
+Each exchange is converted into knowledge facts and added to the graph.
 
 [Deep dive: Chat training →](/training/chat)
 
@@ -133,7 +101,7 @@ Each exchange is converted into knowledge triples and added to the store.
 The four sources are **complementary**, not redundant:
 
 - **Probe** discovers what exists and how to navigate it
-- **Code** reveals the underlying data model and permissions
+- **Code (Frontend Source)** reveals the underlying data model and permissions
 - **Docs** provides the business-level concepts and terminology
 - **Chat** adds tacit knowledge that no automated source can capture
 

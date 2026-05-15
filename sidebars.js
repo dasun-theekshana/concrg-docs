@@ -12,7 +12,6 @@ const sidebars = {
       items: [
         'getting-started/quick-start',
         'getting-started/installation',
-        'getting-started/configuration',
       ],
     },
     {

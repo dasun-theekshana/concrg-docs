@@ -114,4 +114,3 @@ Runs on **port 3002** by default.
 ## Next Steps
 
 - [Quick Start →](/getting-started/quick-start) — Get running in 5 minutes
-- [Configuration →](/getting-started/configuration) — All `CRGConfig` options explained

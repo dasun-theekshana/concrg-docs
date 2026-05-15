@@ -101,6 +101,5 @@ Once training completes, switch to **Assist Mode** in the panel:
 
 ## What's next?
 
-- [Configure ConCRG →](/getting-started/configuration) — Set app ID, roles, docs URL, and more
 - [Training Sources →](/training/probe) — Understand how each training mode works
 - [Modes →](/modes/find) — Deep dive into FIND, LEARN, PRACTICE, and REMEMBER

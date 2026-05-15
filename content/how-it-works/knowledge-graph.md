@@ -6,74 +6,35 @@ sidebar_label: Knowledge Graph
 
 # The Knowledge Graph
 
-The CRG (Contextual Resource Graph) is the core IP of ConCRG. It's a structured representation of everything ConCRG knows about your application — pages, elements, workflows, roles, and the relationships between them.
+The CRG (Contextual Resource Graph) is the core of ConCRG. It's a structured representation of everything ConCRG knows about your application — pages, elements, workflows, roles, and the relationships between them.
 
 ---
 
-## Data Model
+## RDF Triples
 
-### RDF Triples
+All knowledge is stored as **RDF triples**: `subject → predicate → object`. Every fact about your app is expressed in this form.
 
-All knowledge is stored as **RDF triples**: `subject → predicate → object`.
+![Knowledge Graph Triples](/img/knowledge-graph-visual.svg)
 
-```
-"Invoice page"   → "navigates_to"    → "/invoices/new"
-"Delete button"  → "requires_role"   → "admin"
-"Deal"           → "belongs_to"      → "Pipeline"
-"Settlement"     → "has_workflow"    → "Bond Settlement Workflow"
-"Create Invoice" → "requires"        → "Contact"
-```
+Each triple carries metadata — which training source produced it, a confidence score, and when it was created. When two sources produce conflicting facts about the same thing, the triple with the highest confidence wins.
 
-Each triple carries metadata:
-- `source` — which training source produced it (probe, code, docs, chat)
-- `confidence` — 0.0 to 1.0 score
-- `route` — which page it was extracted from
-- `timestamp` — when it was created
-- `category` — semantic category
+---
 
-**Deduplication:** Exact matches on (subject, predicate, object) are collapsed. On conflict, the triple with the highest confidence and most recent timestamp wins.
+## What the Knowledge Graph Contains
 
-### ApplicationSitemap
+The graph is assembled into a structured map of your entire application:
 
-Triples are assembled into a structured `ApplicationSitemap`:
-
-```typescript
-interface ApplicationSitemap {
-  appId: string;
-  version: number;
-  generatedAt: string;
-  lastUpdated: string;
-
-  pages: Record<string, Page>;
-  sections: Section[];
-  roles: Role[];
-  roleHierarchy: RoleInheritance[];
-  workflows: Workflow[];
-  triples: Triple[];
-}
-```
-
-Each **Page** captures:
-```typescript
-interface Page {
-  route: string;
-  title: string;
-  category: string;
-  elements: UIElement[];
-  parent?: string;
-  children: string[];
-  breadcrumbs: string[];
-  requiredRoles: string[];
-  visibilityConditions: string[];
-  discoveredVia: 'probe' | 'code' | 'docs' | 'chat';
-}
-```
+- **Pages** — every route in your app, with its title, UI elements, required roles, and parent/child relationships
+- **Sections** — logical groupings of related pages (e.g. "CRM", "Billing", "Settings")
+- **Roles** — who can access what, including role hierarchy and inheritance
+- **Workflows** — named multi-step sequences users can follow to complete tasks
+- **Relationships** — how all of the above connect to each other
 
 ---
 
 ## Persistence
 
-Knowledge is stored locally by the Train Service with no external dependencies required. For production deployments, knowledge optionally syncs to a Neo4j graph database, enabling persistent storage, faster queries, and change tracking over time. Sync is triggered from the training panel and can be full (rebuild) or incremental (delta only).
+Knowledge is stored locally with no external dependencies required to get started. For production deployments, knowledge optionally syncs to a Neo4j graph database — enabling persistent storage, faster queries, and change tracking over time. Sync can be full (rebuild) or incremental (delta only).
 
 ---
 

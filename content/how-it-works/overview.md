@@ -10,103 +10,51 @@ ConCRG has two distinct phases: **Training** (learning your app) and **Assist** 
 
 ---
 
-## The Two Phases
+## Phase 1: Training
 
-### Phase 1: Training
+During training, ConCRG builds a knowledge graph of your application using up to four parallel sources — each contributing a different angle of knowledge.
 
-During training, ConCRG systematically builds a knowledge graph of your application. It uses up to four parallel sources:
+![Training Flow](/img/training-flow.svg)
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      Training Sources                        │
-├──────────────┬──────────────┬──────────────┬────────────────┤
-│    Probe     │     Code     │     Docs     │      Chat      │
-│ (DOM walker) │ (TS source)  │ (web crawl)  │ (conversation) │
-└──────┬───────┴──────┬───────┴──────┬───────┴───────┬────────┘
-       │              │              │               │
-       └──────────────┴──────────────┴───────────────┘
-                              │
-                    ┌─────────▼─────────┐
-                    │   Train Service   │
-                    │  (Claude API)     │
-                    └─────────┬─────────┘
-                              │ RDF Triples
-                    ┌─────────▼─────────┐
-                    │  Knowledge Store  │
-                    │  (JSON + Neo4j)   │
-                    └───────────────────┘
-```
+Each source produces structured facts about your app that are merged into a single knowledge base. The more sources you run, the richer the graph.
 
-Each source produces structured **RDF triples** — `subject → predicate → object` facts about the app — that are merged into a single knowledge base.
+---
 
-### Phase 2: Assist
+## Phase 2: Assist
 
-In assist mode, ConCRG answers user questions grounded in the knowledge graph:
+In assist mode, ConCRG answers user questions grounded in the knowledge graph it built during training.
 
-```
-User question
-     │
-     ▼
- Intent classification
- (FIND / LEARN / PRACTICE / REMEMBER)
-     │
-     ▼
- Graph RAG query
- (retrieve relevant triples + context)
-     │
-     ▼
- Claude generates response
- grounded in knowledge
-     │
-     ▼
- Mode-specific UI
- (navigation, card, walkthrough, timeline)
-```
+![Assist Flow](/img/assist-flow.svg)
+
+Every response is grounded in your specific app's knowledge — not generic LLM training data. This prevents hallucinations about your product.
 
 ---
 
 ## The Knowledge Graph
 
-The core data structure is the **ApplicationSitemap** — a rich model of the entire app built from training:
+The knowledge graph is a rich, structured model of your entire application. It captures:
 
-```
-ApplicationSitemap
-├── pages: Record<route, Page>
-│   ├── route: "/deals"
-│   ├── elements: [Button, Input, Table...]
-│   ├── category: "CRM / Sales"
-│   ├── parent/child routes
-│   ├── requiredRoles: ["admin", "sales"]
-│   └── discoverySource: "probe"
-│
-├── workflows: Workflow[]
-│   ├── name: "Create a Deal"
-│   ├── steps: [navigate, fill, submit...]
-│   └── estimatedTime: "2 minutes"
-│
-├── roles: Role[]
-│   └── [admin, sales_rep, viewer...]
-│
-└── triples: Triple[]
-    ├── { subject: "Invoice", predicate: "requires", object: "Contact" }
-    ├── { subject: "/invoices", predicate: "navigates_to", object: "/invoices/new" }
-    └── { subject: "Delete button", predicate: "requires_role", object: "admin" }
-```
+- **Pages** — every route, its UI elements, required roles, and navigation relationships
+- **Workflows** — multi-step sequences users can follow to complete tasks
+- **Roles** — who can see and do what across the app
+- **Relationships** — how features, pages, and data models connect to each other
+
+All of this is built automatically during training and kept current as your app evolves.
 
 ---
 
-## Key Architectural Principles
+## Key Principles
 
-### 1. The Concierge Principle
-ConCRG is a guest in your application. It never competes with your UI — it uses shadow DOM to contain its own interface, appears only when needed, and is always dismissable. [Read more →](/concepts/concierge-principle)
+### The Concierge Principle
+ConCRG is a guest in your application. It never competes with your UI — it appears only when needed, contains its interface in an isolated layer, and is always dismissable. [Read more →](/concepts/concierge-principle)
 
-### 2. Autonomous Learning
-No content authoring required. ConCRG learns your app from its source — the running DOM, your TypeScript code, and your documentation. Knowledge stays current because the source stays current.
+### Autonomous Learning
+No content authoring required. ConCRG learns your app from its source — the running interface, your frontend code, and your documentation. Knowledge stays current because the source stays current.
 
-### 3. Grounded Responses
+### Grounded Responses
 All AI responses are grounded in the knowledge graph, not in the LLM's training data. This prevents hallucinations about your specific product.
 
-### 4. Adaptive by Design
+### Adaptive by Design
 The same question gets a different answer depending on who is asking, what page they're on, and what they've done before. [Read more →](/concepts/adaptive-response)
 
 ---
@@ -114,5 +62,5 @@ The same question gets a different answer depending on who is asking, what page 
 ## Next Steps
 
 - [S-FLPR Framework →](/how-it-works/s-flpr-framework) — The five modes in depth
-- [Knowledge Graph →](/how-it-works/knowledge-graph) — How triples and the sitemap work
+- [Knowledge Graph →](/how-it-works/knowledge-graph) — How knowledge is structured and queried
 - [Training Sources →](/how-it-works/training-sources) — Probe, Code, Docs, Chat
