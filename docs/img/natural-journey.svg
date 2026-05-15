@@ -1,0 +1,63 @@
+<svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#db2777"/>
+    </marker>
+  </defs>
+
+  <!-- First encounter label -->
+  <text x="30" y="30" font-size="12" font-weight="700" fill="#64748b">First encounter with a feature</text>
+
+  <rect x="30" y="44" width="120" height="48" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">FIND</text>
+  <text x="90" y="84" text-anchor="middle" font-size="10" fill="#2563eb">Locate it</text>
+
+  <line x1="150" y1="68" x2="198" y2="68" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrB)"/>
+
+  <rect x="202" y="44" width="120" height="48" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="262" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#064e3b">LEARN</text>
+  <text x="262" y="84" text-anchor="middle" font-size="10" fill="#059669">Understand it</text>
+
+  <line x1="322" y1="68" x2="370" y2="68" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrB)"/>
+
+  <rect x="374" y="44" width="120" height="48" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="434" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#7c2d12">PRACTICE</text>
+  <text x="434" y="84" text-anchor="middle" font-size="10" fill="#ea580c">Try it safely</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="130" x2="730" y2="130" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Returning user label -->
+  <text x="30" y="160" font-size="12" font-weight="700" fill="#64748b">Returning after time away</text>
+
+  <rect x="30" y="174" width="120" height="48" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="198" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">FIND</text>
+  <text x="90" y="214" text-anchor="middle" font-size="10" fill="#2563eb">or SENSE</text>
+
+  <line x1="150" y1="198" x2="198" y2="198" stroke="#db2777" stroke-width="2" marker-end="url(#arrP)"/>
+
+  <rect x="202" y="174" width="120" height="48" rx="8" fill="#fdf2f8" stroke="#db2777" stroke-width="2"/>
+  <text x="262" y="198" text-anchor="middle" font-size="13" font-weight="700" fill="#831843">REMEMBER</text>
+  <text x="262" y="214" text-anchor="middle" font-size="10" fill="#db2777">Recall past activity</text>
+
+  <line x1="322" y1="198" x2="370" y2="198" stroke="#db2777" stroke-width="2" marker-end="url(#arrP)"/>
+
+  <rect x="374" y="174" width="120" height="48" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="434" y="198" text-anchor="middle" font-size="13" font-weight="700" fill="#7c2d12">PRACTICE</text>
+  <text x="434" y="214" text-anchor="middle" font-size="10" fill="#ea580c">Quick refresh</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="258" x2="730" y2="258" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Power user label -->
+  <text x="30" y="284" font-size="12" font-weight="700" fill="#64748b">Power user</text>
+
+  <rect x="30" y="294" width="120" height="20" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="90" y="308" text-anchor="middle" font-size="11" font-weight="700" fill="#1e3a8a">FIND → done</text>
+
+  <text x="168" y="308" font-size="11" fill="#64748b">They know the rest — ConCRG stays out of the way</text>
+
+</svg>
