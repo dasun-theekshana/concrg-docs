@@ -1,0 +1,85 @@
+<svg viewBox="0 0 900 720" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">CRG System Architecture</text>
+
+  <!-- Client Layer -->
+  <rect x="60" y="60" width="780" height="170" rx="12" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="80" y="88" font-size="14" font-weight="700" fill="#1e3a8a">Your Application (React SPA)</text>
+  <text x="80" y="106" font-size="11" fill="#475569">Wrapped by &lt;CRGProvider&gt;</text>
+
+  <rect x="100" y="125" width="280" height="85" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="240" y="152" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">&lt;App /&gt;</text>
+  <text x="240" y="172" text-anchor="middle" font-size="11" fill="#64748b">Your UI</text>
+  <text x="240" y="190" text-anchor="middle" font-size="11" fill="#64748b">React components &amp; pages</text>
+
+  <rect x="420" y="125" width="380" height="85" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="610" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">CRG Connector</text>
+  <text x="440" y="170" font-size="11" fill="#475569">• Route monitoring</text>
+  <text x="440" y="186" font-size="11" fill="#475569">• DOM observation</text>
+  <text x="440" y="202" font-size="11" fill="#475569">• Sidecar UI (Shadow DOM)</text>
+
+  <!-- Flow labels & arrows -->
+  <text x="230" y="265" text-anchor="middle" font-size="12" font-weight="600" fill="#059669">Training</text>
+  <text x="670" y="265" text-anchor="middle" font-size="12" font-weight="600" fill="#2563eb">Assist</text>
+
+  <line x1="230" y1="230" x2="230" y2="295" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="670" y1="230" x2="670" y2="295" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- Train Service -->
+  <rect x="60" y="300" width="380" height="190" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="80" y="328" font-size="14" font-weight="700" fill="#064e3b">Train Service</text>
+  <text x="80" y="346" font-size="11" fill="#475569">Node.js</text>
+  <line x1="80" y1="358" x2="420" y2="358" stroke="#a7f3d0" stroke-width="1"/>
+  <text x="90" y="382" font-size="12" fill="#0f172a">• Probe analysis</text>
+  <text x="90" y="404" font-size="12" fill="#0f172a">• Code analysis</text>
+  <text x="90" y="426" font-size="12" fill="#0f172a">• Docs crawling</text>
+  <text x="90" y="448" font-size="12" fill="#0f172a">• Chat training</text>
+  <text x="90" y="470" font-size="12" fill="#0f172a">• Knowledge store</text>
+
+  <!-- Graph Service -->
+  <rect x="500" y="300" width="340" height="190" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="520" y="328" font-size="14" font-weight="700" fill="#1e3a8a">Graph Service</text>
+  <text x="520" y="346" font-size="11" fill="#475569">Python</text>
+  <line x1="520" y1="358" x2="820" y2="358" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="530" y="388" font-size="12" fill="#0f172a">• Knowledge graph</text>
+  <text x="530" y="414" font-size="12" fill="#0f172a">• Graph RAG queries</text>
+  <text x="530" y="440" font-size="12" fill="#0f172a">• Role-based access</text>
+
+  <!-- Sync arrow -->
+  <line x1="440" y1="395" x2="495" y2="395" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="5,3"/>
+  <text x="467" y="385" text-anchor="middle" font-size="10" font-weight="600" fill="#475569">sync</text>
+
+  <!-- Arrow to DB -->
+  <line x1="670" y1="490" x2="670" y2="555" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- Neo4j -->
+  <rect x="500" y="560" width="340" height="110" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="670" y="592" text-anchor="middle" font-size="14" font-weight="700" fill="#78350f">Neo4j</text>
+  <text x="670" y="612" text-anchor="middle" font-size="11" fill="#92400e">(optional)</text>
+  <text x="670" y="640" text-anchor="middle" font-size="12" fill="#0f172a">Persistent graph database</text>
+  <text x="670" y="658" text-anchor="middle" font-size="11" fill="#64748b">Stores nodes, edges, embeddings</text>
+
+  <!-- Legend -->
+  <rect x="60" y="560" width="380" height="110" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="80" y="585" font-size="12" font-weight="700" fill="#0f172a">Legend</text>
+  <line x1="80" y1="608" x2="115" y2="608" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="125" y="612" font-size="11" fill="#334155">Training data flow</text>
+  <line x1="240" y1="608" x2="275" y2="608" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="285" y="612" font-size="11" fill="#334155">Assist query flow</text>
+  <line x1="80" y1="635" x2="115" y2="635" stroke="#475569" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+  <text x="125" y="639" font-size="11" fill="#334155">Service sync</text>
+  <line x1="240" y1="635" x2="275" y2="635" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="285" y="639" font-size="11" fill="#334155">Persistence</text>
+  <text x="80" y="660" font-size="10" fill="#64748b" font-style="italic">Client trains the system, then queries it for in-app assistance.</text>
+</svg>
