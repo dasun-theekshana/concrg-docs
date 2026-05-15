@@ -12,17 +12,7 @@ S-FLPR is ConCRG's model for how users experience assistance inside software. It
 
 ## The Five Modes
 
-```
-S ─── Sense (proactive detection)
-│
-├── F ─── Find     "Where is it?"
-│
-├── L ─── Learn    "What does it do?"
-│
-├── P ─── Practice "How do I use it?"
-│
-└── R ─── Remember "I've done this before"
-```
+![S-FLPR Framework](/img/s-flpr.svg)
 
 ### SENSE
 ConCRG monitors behavioral signals to detect confusion before the user asks for help. When a frustration pattern is detected, it proactively offers the right mode.
