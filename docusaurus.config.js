@@ -7,8 +7,8 @@ const config = {
   tagline: 'Making Software Sentient',
   favicon: 'img/logo.svg',
 
-  url: 'https://concrg.github.io',
-  baseUrl: '/product-docs/',
+  url: 'https://docs.concrg.ai',
+  baseUrl: '/',
 
   organizationName: 'concrg',
   projectName: 'product-docs',
